@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Drive Car Rentals |Book ZoomCar & Feel Safe!zoomcar.com</title>
+    <link rel="shortcut icon" href="https://www.zoomcar.com/build/img/favicon.d917d618529f3ffdf883e3b847e516df.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/checkout_page.css">
+    <link rel="stylesheet" href="/css/nav2.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+
+
+<body>
+    <%- include('partials/navbar2') %>
+        <div id="checkout_cont">
+            <div class="payment_cont f_l">
+                <div class="checkout_div">Checkout</div>
+                <div class="book_div">
+                    <span class="booking f_l">Booking Fee
+                    <br>
+                    <span class="spanfee">
+                        Booking fee excludes fuel cost
+                    </span>
+                    </span>
+                    <% car_data.forEach(function (input) { %>
+                    <div class="f_r rupees_paid" id="price_car">
+                        <%=input.price%>
+                    </div>
+                    <% }) %>
+                    <div class="clear"></div>
+                </div>
+                <div class="promotion">
+                    <div class="f_l">Promotion Code</div>
+                    <button class="coupon_btn f_r" onclick="zoomnew()">ZOOMNEW</button>
+                    <div class="clear"></div>
+                </div>
+                <div class="refund_cont">
+                    <div class="f_l refund">Refundable Deposite</div>
+                    <div class="f_r refundable">₹ 2,499</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="total">
+                    <div class="f_l  totalpayble">Total Payable Amount</div>
+                    <div class="f_r totalpayblecol" id="total"></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="car_cont ">
+                <div class="summary">SUMMARY</div>
+                <% car_data.forEach(function (input) { %>
+                <div id="car_img">
+                   <img src="<%=input.img%>" alt="">
+                </div>
+                <% }) %>
+                <div class="Car_details"></div>
+                <div class="Car_details">(5 Seater)</div>
+                <div class="border"></div>
+                <div id="d_p_point">
+                    <% input_data.forEach(function (input) { %>
+                    <div id="star_point">
+                        <h5>STARTING POINT <span>></span></h5>
+                        <h4 class="pick_city"><%=input.pick_city%></h4>
+                        <p class="p_point_car"><%=input.pick_location%></p>
+                    </div>
+                    <div id="drop_point">
+                        <h5>DESTINATION<span>></span></h5>
+                        <h4 class="drop_city"><%=input.drop_city%></h4>
+                        <p class="d_point_car"><%=input.drop_location%></p>
+                    </div>
+                </div>
+                <div id="data_flex">
+                  
+                    <div id="date_start">
+                        <h5 class="dat_head_h5">PICKUP TIME<span>></span></h5>
+                        <div class="p_info">
+                            <div class="left_date"><%=input.pick_date%></div>
+                            <div class="rigth_m_t">
+                                <h6 class="p_day"><%=input.pick_day%></h6>
+                                <p class="s_time_date"><%=input.pick_time%></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="date_end">
+                        <h5 class="dat_head_h5">DROP OFF TIME<span>></span></h5>
+                        <div class="p_info">
+                            <div class="right_date"><%=input.drop_date%></div>
+                            <div class="rigth_m_t">
+                                <h6 class="d_day"><%=input.drop_day%></h6>
+                                <p class="e_time_date"><%=input.drop_time%></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+
+            </div>
+            <div class="clear"></div>
+
+            <div class="btn_cont">
+                <form action="/price" method="POST">
+                    <input type="text" name="price" class="none" id="total_price_db">
+                <button type="submit"  id="checkout_btn">Checkout</button>
+            </form>
+            </div>
+        </div>
+
+        <%- include('partials/footers') %>
+
+</body>
+
+</html>
+<script src="./js/checkout_page.js">
+</script>
